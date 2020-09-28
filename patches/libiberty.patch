@@ -1,0 +1,13 @@
+--- libiberty/simple-object-elf.c~0	2018-07-04 18:41:59.000000000 +0300
++++ libiberty/simple-object-elf.c	2018-07-18 18:19:39.286654700 +0300
+@@ -22,6 +22,10 @@  Boston, MA 02110-1301, USA.  */
+ #include "simple-object.h"
+ 
+ #include <errno.h>
++/* mingw.org's MinGW doesn't have ENOTSUP.  */
++#ifndef ENOTSUP
++# define ENOTSUP ENOSYS
++#endif
+ #include <stddef.h>
+ 
+ #ifdef HAVE_STDLIB_H

@@ -1,0 +1,41 @@
+diff -urN gcc-linaro-5.1-2015.08_orig/gcc/config/arm/nocrt0.h gcc-linaro-5.1-2015.08/gcc/config/arm/nocrt0.h
+--- gcc-linaro-5.1-2015.08_orig/gcc/config/arm/nocrt0.h	1970-01-01 01:00:00.000000000 +0100
++++ gcc-linaro-5.1-2015.08/gcc/config/arm/nocrt0.h	2015-12-15 08:14:12.000000000 +0100
+@@ -0,0 +1,25 @@
++/* Definitions for generic libgloss based cofigs where crt0 is supplied by
++   the linker script.
++   Copyright (C) 2006 Free Software Foundation, Inc.
++
++   This file is part of GCC.
++
++   GCC is free software; you can redistribute it and/or modify it
++   under the terms of the GNU General Public License as published
++   by the Free Software Foundation; either version 3, or (at your
++   option) any later version.
++
++   GCC is distributed in the hope that it will be useful, but WITHOUT
++   ANY WARRANTY; without even the implied warranty of MERCHANTABILITY
++   or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU General Public
++   License for more details.
++
++   You should have received a copy of the GNU General Public License
++   along with GCC; see the file COPYING3.  If not see
++   <http://www.gnu.org/licenses/>.  */
++
++#undef  STARTFILE_SPEC
++#define STARTFILE_SPEC	" crti%O%s crtbegin%O%s"
++
++#undef LIB_SPEC
++#define LIB_SPEC "-lc"
+diff -urN gcc-linaro-5.1-2015.08_orig/gcc/config.gcc gcc-linaro-5.1-2015.08/gcc/config.gcc
+--- gcc-linaro-5.1-2015.08_orig/gcc/config.gcc	2015-10-09 19:06:55.000000000 +0200
++++ gcc-linaro-5.1-2015.08/gcc/config.gcc	2015-12-15 08:12:11.000000000 +0100
+@@ -1072,6 +1072,7 @@
+ 	case ${target} in
+ 	arm*-*-eabi*)
+ 	  tm_file="$tm_file newlib-stdint.h"
++	  tm_file="${tm_file} arm/nocrt0.h"
+ 	  tmake_file="${tmake_file} arm/t-bpabi"
+ 	  use_gcc_stdint=wrap
+ 	  ;;
+

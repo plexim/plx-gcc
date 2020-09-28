@@ -1,0 +1,17 @@
+--- gcc-arm-src-snapshot-8.3-2019.03/gcc/pretty-print.old	2019-02-25 10:41:10 +0100
++++ gcc-arm-src-snapshot-8.3-2019.03/gcc/pretty-print.c	2020-06-22 22:26:45 +0200
+@@ -42,6 +42,14 @@
+ #define WIN32_LEAN_AND_MEAN 1
+ #include <windows.h>
+ 
++#ifndef COMMON_LVB_UNDERSCORE
++#define COMMON_LVB_UNDERSCORE 0x8000
++#endif
++
++#ifndef COMMON_LVB_REVERSE_VIDEO
++#define COMMON_LVB_REVERSE_VIDEO 0x4000
++#endif
++
+ /* Write all bytes in [s,s+n) into the specified stream.
+    Errors are ignored.  */
+ static void
